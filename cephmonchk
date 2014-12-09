@@ -1,0 +1,16 @@
+# default: on
+# description: Check the state of the Ceph monitor
+service cephmonchk
+{
+        disable = no
+        flags = REUSE
+        socket_type = stream
+        port = 6780
+        wait = no
+        user = nobody
+        server = /usr/bin/cephmoncheck
+        log_on_failure += USERID
+        only_from = 0.0.0.0/0
+        #bind = 0.0.0.0
+        per_source = UNLIMITED
+}
